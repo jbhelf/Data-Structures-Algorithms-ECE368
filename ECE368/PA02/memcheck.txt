@@ -1,0 +1,1330 @@
+==41877== Memcheck, a memory error detector
+==41877== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==41877== Using Valgrind-3.14.0-353a3587bb-20181007X and LibVEX; rerun with -h for copyright info
+==41877== Command: ./pa2 original/gophers gophers.count gophers.tree gophers.code gophers.hbt
+==41877== Parent PID: 41874
+==41877== 
+--41877-- 
+--41877-- Valgrind options:
+--41877--    --tool=memcheck
+--41877--    --log-file=memcheck.txt
+--41877--    --leak-check=full
+--41877--    --verbose
+--41877-- Contents of /proc/version:
+--41877--   Linux version 3.10.0-1062.9.1.el7.x86_64 (mockbuild@kbuilder.bsys.centos.org) (gcc version 4.8.5 20150623 (Red Hat 4.8.5-39) (GCC) ) #1 SMP Fri Dec 6 15:49:49 UTC 2019
+--41877-- 
+--41877-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-rdtscp-sse3-avx
+--41877-- Page sizes: currently 4096, max supported 4096
+--41877-- Valgrind library directory: /usr/lib64/valgrind
+--41877-- Reading syms from /home/shay/a/jhelfman/ECE368/PA02/pa2
+--41877-- Reading syms from /usr/lib64/ld-2.17.so
+--41877--   Considering /usr/lib/debug/.build-id/5c/c1a53b747a7e4d21198723c2b633e54f3c06d9.debug ..
+--41877--   .. build-id is valid
+--41877-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--41877--    object doesn't have a symbol table
+--41877--    object doesn't have a dynamic symbol table
+--41877-- Scheduler: using generic scheduler lock implementation.
+--41877-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==41877== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-41877-by-jhelfman-on-ecegrid-thin5.ecn.purdue.edu
+==41877== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-41877-by-jhelfman-on-ecegrid-thin5.ecn.purdue.edu
+==41877== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-41877-by-jhelfman-on-ecegrid-thin5.ecn.purdue.edu
+==41877== 
+==41877== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==41877== don't want to do, unless you know exactly what you're doing,
+==41877== or are doing some strange experiment):
+==41877==   /usr/lib64/valgrind/../../bin/vgdb --pid=41877 ...command...
+==41877== 
+==41877== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==41877==   /path/to/gdb ./pa2
+==41877== and then give GDB the following command
+==41877==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=41877
+==41877== --pid is optional if only one valgrind process is running
+==41877== 
+--41877-- REDIR: 0x4019df0 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c66c5 (???)
+--41877-- REDIR: 0x4019bc0 (ld-linux-x86-64.so.2:index) redirected to 0x580c66df (???)
+--41877-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--41877-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+==41877== WARNING: new redirection conflicts with existing -- ignoring it
+--41877--     old: 0x04019df0 (strlen              ) R-> (0000.0) 0x580c66c5 ???
+--41877--     new: 0x04019df0 (strlen              ) R-> (2007.0) 0x04c2d0e0 strlen
+--41877-- REDIR: 0x4019d70 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4c2e230 (strcmp)
+--41877-- REDIR: 0x401aa30 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4c31de0 (mempcpy)
+--41877-- Reading syms from /usr/lib64/libc-2.17.so
+--41877--   Considering /usr/lib/debug/.build-id/39/8944d32cf16a67af51067a326e6c0cc14f90ed.debug ..
+--41877--   .. build-id is valid
+--41877-- REDIR: 0x4ec70e0 (libc.so.6:strcasecmp) redirected to 0x4a247a0 (_vgnU_ifunc_wrapper)
+--41877-- REDIR: 0x4ec3e60 (libc.so.6:strnlen) redirected to 0x4a247a0 (_vgnU_ifunc_wrapper)
+--41877-- REDIR: 0x4ec93b0 (libc.so.6:strncasecmp) redirected to 0x4a247a0 (_vgnU_ifunc_wrapper)
+--41877-- REDIR: 0x4ec68c0 (libc.so.6:memset) redirected to 0x4a247a0 (_vgnU_ifunc_wrapper)
+--41877-- REDIR: 0x4ec6870 (libc.so.6:memcpy@GLIBC_2.2.5) redirected to 0x4a247a0 (_vgnU_ifunc_wrapper)
+--41877-- REDIR: 0x4ec5850 (libc.so.6:__GI_strrchr) redirected to 0x4c2caa0 (__GI_strrchr)
+--41877-- REDIR: 0x4ebca90 (libc.so.6:malloc) redirected to 0x4c29e1c (malloc)
+--41877-- REDIR: 0x4edc8d0 (libc.so.6:__GI_strstr) redirected to 0x4c32070 (__strstr_sse2)
+--41877-- REDIR: 0x4ec6a90 (libc.so.6:__GI_mempcpy) redirected to 0x4c31b10 (__GI_mempcpy)
+--41877-- REDIR: 0x4ebceb0 (libc.so.6:free) redirected to 0x4c2af16 (free)
+--41877-- REDIR: 0x4ecd370 (libc.so.6:strchrnul) redirected to 0x4c31900 (strchrnul)
+==41877== Invalid write of size 4
+==41877==    at 0x40165E: helpEnc (huffman.c:252)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x40165E: helpEnc (huffman.c:252)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x4015F6: helpEnc (huffman.c:245)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid read of size 4
+==41877==    at 0x40146D: wrtStack (huffman.c:214)
+==41877==    by 0x40160C: helpEnc (huffman.c:246)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x4014A3: wrtStack (huffman.c:216)
+==41877==    by 0x40160C: helpEnc (huffman.c:246)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x401621: helpEnc (huffman.c:247)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x401694: helpEnc (huffman.c:254)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x4016D0: helpEnc (huffman.c:258)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x4015F6: helpEnc (huffman.c:245)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid read of size 4
+==41877==    at 0x40146D: wrtStack (huffman.c:214)
+==41877==    by 0x40160C: helpEnc (huffman.c:246)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x4014A3: wrtStack (huffman.c:216)
+==41877==    by 0x40160C: helpEnc (huffman.c:246)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x401621: helpEnc (huffman.c:247)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x401705: helpEnc (huffman.c:260)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x401694: helpEnc (huffman.c:254)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x4016D0: helpEnc (huffman.c:258)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x40165E: helpEnc (huffman.c:252)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x40165E: helpEnc (huffman.c:252)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x4015F6: helpEnc (huffman.c:245)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x401621: helpEnc (huffman.c:247)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x401694: helpEnc (huffman.c:254)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x4016D0: helpEnc (huffman.c:258)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x4015F6: helpEnc (huffman.c:245)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x401621: helpEnc (huffman.c:247)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x401705: helpEnc (huffman.c:260)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x401694: helpEnc (huffman.c:254)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x4016D0: helpEnc (huffman.c:258)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x40165E: helpEnc (huffman.c:252)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x40165E: helpEnc (huffman.c:252)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x401694: helpEnc (huffman.c:254)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x4016D0: helpEnc (huffman.c:258)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x401705: helpEnc (huffman.c:260)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x401694: helpEnc (huffman.c:254)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x4016D0: helpEnc (huffman.c:258)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x40165E: helpEnc (huffman.c:252)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x4015F6: helpEnc (huffman.c:245)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid read of size 4
+==41877==    at 0x40146D: wrtStack (huffman.c:214)
+==41877==    by 0x40160C: helpEnc (huffman.c:246)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x4014A3: wrtStack (huffman.c:216)
+==41877==    by 0x40160C: helpEnc (huffman.c:246)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x401621: helpEnc (huffman.c:247)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x401694: helpEnc (huffman.c:254)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x4016D0: helpEnc (huffman.c:258)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x4015F6: helpEnc (huffman.c:245)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid read of size 4
+==41877==    at 0x40146D: wrtStack (huffman.c:214)
+==41877==    by 0x40160C: helpEnc (huffman.c:246)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x4014A3: wrtStack (huffman.c:216)
+==41877==    by 0x40160C: helpEnc (huffman.c:246)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x401621: helpEnc (huffman.c:247)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x401705: helpEnc (huffman.c:260)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x401705: helpEnc (huffman.c:260)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x401705: helpEnc (huffman.c:260)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== Invalid write of size 4
+==41877==    at 0x401705: helpEnc (huffman.c:260)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== HEAP SUMMARY:
+==41877==     in use at exit: 1,136 bytes in 26 blocks
+==41877==   total heap usage: 72 allocs, 46 frees, 7,829 bytes allocated
+==41877== 
+==41877== Searching for pointers to 26 not-freed blocks
+==41877== Checked 78,608 bytes
+==41877== 
+==41877== 8 bytes in 1 blocks are definitely lost in loss record 1 of 11
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x400CDA: comFile (huffman.c:21)
+==41877==    by 0x400B7E: main (huffman_main.c:84)
+==41877== 
+==41877== 16 bytes in 1 blocks are definitely lost in loss record 2 of 11
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x4008E3: main (huffman_main.c:36)
+==41877== 
+==41877== 16 bytes in 1 blocks are definitely lost in loss record 3 of 11
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401D6E: makeForest (huffman.c:430)
+==41877==    by 0x400909: main (huffman_main.c:39)
+==41877== 
+==41877== 16 bytes in 1 blocks are definitely lost in loss record 4 of 11
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401D92: makeForest (huffman.c:435)
+==41877==    by 0x400909: main (huffman_main.c:39)
+==41877== 
+==41877== 64 bytes in 1 blocks are definitely lost in loss record 5 of 11
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x400F4C: comFile (huffman.c:80)
+==41877==    by 0x400B7E: main (huffman_main.c:84)
+==41877== 
+==41877== 64 bytes in 4 blocks are definitely lost in loss record 6 of 11
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401AA9: buildTree (huffman.c:354)
+==41877==    by 0x401E2C: makeForest (huffman.c:445)
+==41877==    by 0x400909: main (huffman_main.c:39)
+==41877== 
+==41877== 96 bytes in 4 blocks are definitely lost in loss record 7 of 11
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401ADD: buildTree (huffman.c:360)
+==41877==    by 0x401E2C: makeForest (huffman.c:445)
+==41877==    by 0x400909: main (huffman_main.c:39)
+==41877== 
+==41877== 96 bytes in 4 blocks are definitely lost in loss record 8 of 11
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401AFE: buildTree (huffman.c:362)
+==41877==    by 0x401E2C: makeForest (huffman.c:445)
+==41877==    by 0x400909: main (huffman_main.c:39)
+==41877== 
+==41877== 96 bytes in 4 blocks are definitely lost in loss record 9 of 11
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401B36: buildTree (huffman.c:368)
+==41877==    by 0x401E2C: makeForest (huffman.c:445)
+==41877==    by 0x400909: main (huffman_main.c:39)
+==41877== 
+==41877== 96 bytes in 4 blocks are definitely lost in loss record 10 of 11
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401B57: buildTree (huffman.c:370)
+==41877==    by 0x401E2C: makeForest (huffman.c:445)
+==41877==    by 0x400909: main (huffman_main.c:39)
+==41877== 
+==41877== LEAK SUMMARY:
+==41877==    definitely lost: 568 bytes in 25 blocks
+==41877==    indirectly lost: 0 bytes in 0 blocks
+==41877==      possibly lost: 0 bytes in 0 blocks
+==41877==    still reachable: 568 bytes in 1 blocks
+==41877==         suppressed: 0 bytes in 0 blocks
+==41877== Reachable blocks (those to which a pointer was found) are not shown.
+==41877== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==41877== 
+==41877== ERROR SUMMARY: 70 errors from 58 contexts (suppressed: 0 from 0)
+==41877== 
+==41877== 1 errors in context 1 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x401705: helpEnc (huffman.c:260)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 2 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x401705: helpEnc (huffman.c:260)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 3 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x401705: helpEnc (huffman.c:260)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 4 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x401705: helpEnc (huffman.c:260)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 5 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x401621: helpEnc (huffman.c:247)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 6 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x4014A3: wrtStack (huffman.c:216)
+==41877==    by 0x40160C: helpEnc (huffman.c:246)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 7 of 58:
+==41877== Invalid read of size 4
+==41877==    at 0x40146D: wrtStack (huffman.c:214)
+==41877==    by 0x40160C: helpEnc (huffman.c:246)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 8 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x4015F6: helpEnc (huffman.c:245)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 9 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x4016D0: helpEnc (huffman.c:258)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 10 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x401694: helpEnc (huffman.c:254)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 11 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x401621: helpEnc (huffman.c:247)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 12 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x4014A3: wrtStack (huffman.c:216)
+==41877==    by 0x40160C: helpEnc (huffman.c:246)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 13 of 58:
+==41877== Invalid read of size 4
+==41877==    at 0x40146D: wrtStack (huffman.c:214)
+==41877==    by 0x40160C: helpEnc (huffman.c:246)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 14 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x4015F6: helpEnc (huffman.c:245)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 15 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x40165E: helpEnc (huffman.c:252)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 16 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x4016D0: helpEnc (huffman.c:258)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 17 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x401694: helpEnc (huffman.c:254)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 18 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x401705: helpEnc (huffman.c:260)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 19 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x4016D0: helpEnc (huffman.c:258)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 20 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x401694: helpEnc (huffman.c:254)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 21 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x40165E: helpEnc (huffman.c:252)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 22 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x40165E: helpEnc (huffman.c:252)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 23 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x4016D0: helpEnc (huffman.c:258)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 24 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x401694: helpEnc (huffman.c:254)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 25 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x401705: helpEnc (huffman.c:260)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 26 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x4016D0: helpEnc (huffman.c:258)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 27 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x401694: helpEnc (huffman.c:254)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 28 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x40165E: helpEnc (huffman.c:252)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 29 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x40165E: helpEnc (huffman.c:252)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 30 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x4016D0: helpEnc (huffman.c:258)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 31 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x401694: helpEnc (huffman.c:254)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 32 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x401705: helpEnc (huffman.c:260)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 33 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x401621: helpEnc (huffman.c:247)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 34 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x4015F6: helpEnc (huffman.c:245)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 35 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x4016D0: helpEnc (huffman.c:258)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 36 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x401694: helpEnc (huffman.c:254)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 37 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x401621: helpEnc (huffman.c:247)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 38 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x4015F6: helpEnc (huffman.c:245)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 39 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x40165E: helpEnc (huffman.c:252)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 1 errors in context 40 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x40165E: helpEnc (huffman.c:252)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 2 errors in context 41 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x401621: helpEnc (huffman.c:247)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 2 errors in context 42 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x4015F6: helpEnc (huffman.c:245)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 2 errors in context 43 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x401621: helpEnc (huffman.c:247)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 2 errors in context 44 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x4015F6: helpEnc (huffman.c:245)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 3 errors in context 45 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x4014A3: wrtStack (huffman.c:216)
+==41877==    by 0x40160C: helpEnc (huffman.c:246)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 3 errors in context 46 of 58:
+==41877== Invalid read of size 4
+==41877==    at 0x40146D: wrtStack (huffman.c:214)
+==41877==    by 0x40160C: helpEnc (huffman.c:246)
+==41877==    by 0x4016F0: helpEnc (huffman.c:259)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 3 errors in context 47 of 58:
+==41877== Invalid write of size 4
+==41877==    at 0x4014A3: wrtStack (huffman.c:216)
+==41877==    by 0x40160C: helpEnc (huffman.c:246)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== 
+==41877== 3 errors in context 48 of 58:
+==41877== Invalid read of size 4
+==41877==    at 0x40146D: wrtStack (huffman.c:214)
+==41877==    by 0x40160C: helpEnc (huffman.c:246)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x40167F: helpEnc (huffman.c:253)
+==41877==    by 0x4017D3: treeEncode (huffman.c:281)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877==  Address 0x5207690 is 0 bytes after a block of size 0 alloc'd
+==41877==    at 0x4C29EA3: malloc (vg_replace_malloc.c:309)
+==41877==    by 0x401785: treeEncode (huffman.c:276)
+==41877==    by 0x400AF0: main (huffman_main.c:75)
+==41877== 
+==41877== ERROR SUMMARY: 70 errors from 58 contexts (suppressed: 0 from 0)

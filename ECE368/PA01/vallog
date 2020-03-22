@@ -1,0 +1,70 @@
+==2948== Memcheck, a memory error detector
+==2948== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==2948== Using Valgrind-3.14.0-353a3587bb-20181007X and LibVEX; rerun with -h for copyright info
+==2948== Command: ./arss examples/15.b output1.b
+==2948== Parent PID: 2911
+==2948== 
+--2948-- 
+--2948-- Valgrind options:
+--2948--    --tool=memcheck
+--2948--    --log-file=vallog
+--2948--    --leak-check=full
+--2948--    --verbose
+--2948-- Contents of /proc/version:
+--2948--   Linux version 3.10.0-1062.9.1.el7.x86_64 (mockbuild@kbuilder.bsys.centos.org) (gcc version 4.8.5 20150623 (Red Hat 4.8.5-39) (GCC) ) #1 SMP Fri Dec 6 15:49:49 UTC 2019
+--2948-- 
+--2948-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-rdtscp-sse3-avx
+--2948-- Page sizes: currently 4096, max supported 4096
+--2948-- Valgrind library directory: /usr/lib64/valgrind
+--2948-- Reading syms from /home/shay/a/jhelfman/ECE368/PA01/arss
+--2948-- Reading syms from /usr/lib64/ld-2.17.so
+--2948--   Considering /usr/lib/debug/.build-id/5c/c1a53b747a7e4d21198723c2b633e54f3c06d9.debug ..
+--2948--   .. build-id is valid
+--2948-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--2948--    object doesn't have a symbol table
+--2948--    object doesn't have a dynamic symbol table
+--2948-- Scheduler: using generic scheduler lock implementation.
+--2948-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==2948== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-2948-by-jhelfman-on-ecegrid-thin4.ecn.purdue.edu
+==2948== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-2948-by-jhelfman-on-ecegrid-thin4.ecn.purdue.edu
+==2948== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-2948-by-jhelfman-on-ecegrid-thin4.ecn.purdue.edu
+==2948== 
+==2948== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==2948== don't want to do, unless you know exactly what you're doing,
+==2948== or are doing some strange experiment):
+==2948==   /usr/lib64/valgrind/../../bin/vgdb --pid=2948 ...command...
+==2948== 
+==2948== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==2948==   /path/to/gdb ./arss
+==2948== and then give GDB the following command
+==2948==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=2948
+==2948== --pid is optional if only one valgrind process is running
+==2948== 
+--2948-- REDIR: 0x4019df0 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c66c5 (???)
+--2948-- REDIR: 0x4019bc0 (ld-linux-x86-64.so.2:index) redirected to 0x580c66df (???)
+--2948-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--2948-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+==2948== WARNING: new redirection conflicts with existing -- ignoring it
+--2948--     old: 0x04019df0 (strlen              ) R-> (0000.0) 0x580c66c5 ???
+--2948--     new: 0x04019df0 (strlen              ) R-> (2007.0) 0x04c2d0e0 strlen
+--2948-- REDIR: 0x4019d70 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4c2e230 (strcmp)
+--2948-- REDIR: 0x401aa30 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4c31de0 (mempcpy)
+--2948-- Reading syms from /usr/lib64/libc-2.17.so
+--2948--   Considering /usr/lib/debug/.build-id/39/8944d32cf16a67af51067a326e6c0cc14f90ed.debug ..
+--2948--   .. build-id is valid
+--2948-- REDIR: 0x4ec70e0 (libc.so.6:strcasecmp) redirected to 0x4a247a0 (_vgnU_ifunc_wrapper)
+--2948-- REDIR: 0x4ec3e60 (libc.so.6:strnlen) redirected to 0x4a247a0 (_vgnU_ifunc_wrapper)
+--2948-- REDIR: 0x4ec93b0 (libc.so.6:strncasecmp) redirected to 0x4a247a0 (_vgnU_ifunc_wrapper)
+--2948-- REDIR: 0x4ec68c0 (libc.so.6:memset) redirected to 0x4a247a0 (_vgnU_ifunc_wrapper)
+--2948-- REDIR: 0x4ec6870 (libc.so.6:memcpy@GLIBC_2.2.5) redirected to 0x4a247a0 (_vgnU_ifunc_wrapper)
+--2948-- REDIR: 0x4ec5850 (libc.so.6:__GI_strrchr) redirected to 0x4c2caa0 (__GI_strrchr)
+--2948-- REDIR: 0x4ebceb0 (libc.so.6:free) redirected to 0x4c2af16 (free)
+==2948== 
+==2948== HEAP SUMMARY:
+==2948==     in use at exit: 0 bytes in 0 blocks
+==2948==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==2948== 
+==2948== All heap blocks were freed -- no leaks are possible
+==2948== 
+==2948== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==2948== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
